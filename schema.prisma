@@ -1,0 +1,44 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organisation {
+  id    String   @id @default(uuid())
+  name  String
+  users User[]
+  tickets Ticket[]
+}
+
+model User {
+  id             String       @id @default(uuid())
+  organisationId String
+  name           String
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  assignments    Assignment[]
+}
+
+model Ticket {
+  id             String       @id @default(uuid())
+  organisationId String
+  title          String
+  status         String       @default("open")
+  version        Int          @default(0)
+  organisation   Organisation @relation(fields: [organisationId], references: [id])
+  assignment     Assignment?
+}
+
+model Assignment {
+  id           String   @id @default(uuid())
+  ticketId     String   @unique
+  technicianId String
+  createdAt    DateTime @default(now())
+
+  ticket      Ticket @relation(fields: [ticketId], references: [id])
+  technician User   @relation(fields: [technicianId], references: [id])
+}

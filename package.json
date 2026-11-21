@@ -1,0 +1,23 @@
+{
+  "name": "concurrent-assignment-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "test": "vitest run"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  }
+}
